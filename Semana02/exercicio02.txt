@@ -1,0 +1,30 @@
+a) Liste e descreva o que são as 4 etapas do processo de compilação.
+
+As quatro etapas do processo de compilação são:
+Preprocessing, etapa que consiste na execução de diretivas e expansão de macros.
+Suas principais capacidades são: Inclusão de arquivos de cabeçalho, arquivos de declaração que podem ser substituídos; expansão macro, onde o pré-processador irá substituir os macros com suas definições no programa; compilação condicional, onde o você pode incluir e excluir partes do programa seguindo algumas condições; controle de linha, para informar o compilador de onde cada linha fonte veio, e diagnóstico, para a detecção de problemas.
+Compilation Proper, esta etapa pega a saída do pré-processador e gera a linguagem assembly, uma linguagem intermediária legível por humanos, específica para o processador de destino.
+Assembly, onde onverter o código assembly é convertido em código binário puro, também conhecido como código de máquina ou código objeto.
+Linking, onde o código binário é mesclado de vários módulos em somente um. Se estivermos usando uma função de bibliotecas, o linker vinculará o código a esse código de função da biblioteca, já na vinculação estática, o linker faz uma cópia de todas as funções de biblioteca usadas no arquivo executável e na vinculação dinâmica, o código é feito apenas colocando o nome da biblioteca no arquivo binário.
+
+b) O compilador gcc permite fornecer parâmetros extras, que modificam desde a emissão de 
+erros até o binário final, o otimizando para determinados comportamentos. Explique a função 
+dos seguintes parâmetros:
+
+i) -static
+Vinculação para bibliotecas estáticas.
+
+ii) -g
+Inclui informações de depuração padrão no binário.
+
+iii) -pedantic
+Emite todos os avisos exigidos pelo padrão ANSI/ISO C.
+
+iv) -Wall
+Emite todos os avisos geralmente úteis que o gcc pode fornecer.
+Avisos específicos também podem ser sinalizados usando -W{warning}.
+
+v) -Os
+
+
+vi) -O3
