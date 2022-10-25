@@ -1,1 +1,10 @@
+Uma instância em execução de um programa é chamada de processo, cada janela de terminal está executando um shell e cada shell em execução é também um processo.
+Ao realizar um comando de um shell, o programa correspondente é executado em um novo processo e o shell volta quanto o processo é concluído. Programadores avançados geralmente usam vários processos em uma mesma aplicação.
+A maioria das funções de manipulação de processos são semelhantes à aquelas em outros sistemas UNIX.
 
+3.1 Looking at Processes
+
+Há sempre processos rodando no computador, todo programa utiliza um ou mais processos.
+Cada processo em um sistema Linux é identificado por seu ID de processo exclusivo, também conhecido como pid. IDs de processo são números de 16 bits que são atribuídos sequencialmente pelo sistema Linux à medida que novos processos são criados.
+Todo processo tem um processo parente, com exeção do processo init. Estes processos estão dispostos em uma tree e o init serve como root. Quando nos referimos aos IDs de processo num programa C ou C++ devemos utilizar pid_t typef e este ID pode ser obtido por um programa ao utlizar a função
+getpid() e a ID do parente com getppid().
