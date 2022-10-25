@@ -68,5 +68,14 @@ isto pode ser feito com a família wait, que permite esperar que um processo ter
 3.4.2 The wait System Calls
 
 Existem quatro chamadas de sistema para a família wait. A primeira é a utilização simples do wait, ela bloqueia o processo chamado até que um de seus filhos dê exit ou retorne um erro. esta função retorna um código de status por um pointeiro e esta informação pode ser extraída pela macro WEXITSTATUS.
-Você pode utilizar WIFEXITED para determinar se o processo terminou normalmente ou morreu por um sinal não manipulado. A macro WTERMSIG pode ser utilizada para extrair o sinal pelo qual o processo foi terminado 
+Você pode utilizar WIFEXITED para determinar se o processo terminou normalmente ou morreu por um sinal não manipulado. A macro WTERMSIG pode ser utilizada para extrair o sinal pelo qual o processo foi terminado.
+A função waitpid pode ser utilizada para esperar um processo filho específico, a função wait3 retorna o uso estatístico da CPU e a função wait4 permite adicionar opções ao processo esperado.
+
+3.4.3 Zombie Processes
+
+Se um processo filho finaliza enquanto o pai está chamando uma função wait, o processo filho desaparece e seu status de terminação é passado ao pai através da função wait. Quando um processo filho termina sem o pai chamar a função wait ele se torna um processo zumbi, para que o status de terminação não seja perdido.
+Um processo zumbi é aquele terminado, mas que ainda não foi limpado. É responsabilidade do processo pai limpar um processo filho zumbi, a função wait realiza esta tarefa. Se um processo pai não limpar um processo filho ele ficam no sistema como processos zumbi.
+
+
+ 
 
