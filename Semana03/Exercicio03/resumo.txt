@@ -44,5 +44,29 @@ Cada sinal tem uma disposição padrão que determina o que acontecerá ao proce
 como por exemplo terminando um processo por SIGTERM ou SIGKILL. Utilizando o sigaction podemos designar a disposição de um sinal. Já que os sinais são assincronos, o programa principal pode ficar em um estado frágil enquanto um sinal e um signal handler são executados em conjunto, um signal handler pode até mesmo ser interrompido pelo envio de outro sinal. Este erro pode ser difícil de ser diagnosticado.
 Até mesmo ao modificar o valor de uma variável global pode ser perigoso, pois esta tarefa pode ser dividida entre duas ou mais intruções, se um sinal ocorrer entre elas, ela pode ser corrompida. Desta forma, devemos utilizar sig_atomic_t para designar uma varável global.
 
+3.4 Process Termination
 
+Normalmente um processo é terminado de duas formas, por meio do comando exit ou pelo retorno da função principal. Outros sinais também são utilizados para terminar um processo: SIGINT é enviado a um processo quando o usuário envia Crtl + C no terminal, o SIGTERM é o sinal do comando kill, ao utilizar a função abort o processo envia a si mesmo um sinal SIGABRT.
+O comando mais forte é o SIGKILL, pois não pode ser parado pelo programa. Todos estes sinais podem ser especificados ao utilizar o comando kill. Para enviar um sinal a um programa, utilizamos a função kill. O primeiro parâmetro é o ID do processo, o segundo é o número do sinal.
+Por convenção,  o código de saída é utilizado para indicar se o programa executou corretamente, o exit code 0 indica uma execução correta e um valor diferente de 0 indica uma execução incorreta e cada valor indica um erro de natureza diferente. Na maioria dos shells é possível obter o código de saída utilizando a variável especial $?, como no exemplo abaixo:
+
+% ls /
+bin coda etc lib	misc nfs proc sbin usr
+boot dev home los+found mnt opt root tmp var
+% echo $?
+0
+% ls bogusfile
+ls: bogusfile: No such file or directory
+% echo $?
+1
+
+3.4.1 Waiting for Process Termination
+
+Como o Linux é multitarefas, os processos são executados simultâneamente e você consegue prever qual processo virá primeiro. Às vezes é preferível que um processo pai espere os processos de um ou mais processos filhos,
+isto pode ser feito com a família wait, que permite esperar que um processo termine e envia a informação de fim para o processo pai.
+
+3.4.2 The wait System Calls
+
+Existem quatro chamadas de sistema para a família wait. A primeira é a utilização simples do wait, ela bloqueia o processo chamado até que um de seus filhos dê exit ou retorne um erro. esta função retorna um código de status por um pointeiro e esta informação pode ser extraída pela macro WEXITSTATUS.
+Você pode utilizar WIFEXITED para determinar se o processo terminou normalmente ou morreu por um sinal não manipulado. A macro WTERMSIG pode ser utilizada para extrair o sinal pelo qual o processo foi terminado 
 
