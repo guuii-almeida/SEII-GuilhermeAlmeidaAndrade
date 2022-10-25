@@ -7,4 +7,19 @@ A maioria das funções de manipulação de processos são semelhantes à aquela
 Há sempre processos rodando no computador, todo programa utiliza um ou mais processos.
 Cada processo em um sistema Linux é identificado por seu ID de processo exclusivo, também conhecido como pid. IDs de processo são números de 16 bits que são atribuídos sequencialmente pelo sistema Linux à medida que novos processos são criados.
 Todo processo tem um processo parente, com exeção do processo init. Estes processos estão dispostos em uma tree e o init serve como root. Quando nos referimos aos IDs de processo num programa C ou C++ devemos utilizar pid_t typef e este ID pode ser obtido por um programa ao utlizar a função
-getpid() e a ID do parente com getppid().
+getpid() e a ID do parente com getppid(). Um ID diferente será obtido para cada vez que o programa rodar.
+
+
+3.1.2 Viewing Active Processes
+
+O comando ps mostra os processos que estão rodando no sistema, este comando tem várias opções que podem controlar quais processos serão mostrados e qual informação eles mostrarão. A opção -e instrui o ps a mostrar todos os processos do sistema.
+A função -o pid, ppid, fala ao ps quais informações do processo serão mostradas. Você também pode utilizar -f (full listing), -l(long listing) ou -j(jobs listing) para três tipos de formato de lista.
+
+3.1.3 Killing a Process
+
+Você pode matar um processo utilizando o comando kill, basta especificar na linha de comando o ID do processo. O comando kill funciona ao enviar um sinal de terminação ao processo que faz com que ele acabe a não ser que o processo lide com este sinal.
+
+3.2 Creating Processes
+
+Duas técnicas são utilizadas para criar um novo processo. A primeira é ineficiente e tem riscos de segurança e a segunda é mais complexa, porém garante mais flexibilidade, velocidade e segurança.
+Ao utilizar a função system na biblioteca padrão C, podemos executar um comando de dentro de um programa, como se este comando tivesse escrito em uma shell, o sistema cria até mesmo um sub processo.
