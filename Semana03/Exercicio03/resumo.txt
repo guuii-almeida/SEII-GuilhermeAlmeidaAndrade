@@ -76,6 +76,10 @@ A função waitpid pode ser utilizada para esperar um processo filho específico
 Se um processo filho finaliza enquanto o pai está chamando uma função wait, o processo filho desaparece e seu status de terminação é passado ao pai através da função wait. Quando um processo filho termina sem o pai chamar a função wait ele se torna um processo zumbi, para que o status de terminação não seja perdido.
 Um processo zumbi é aquele terminado, mas que ainda não foi limpado. É responsabilidade do processo pai limpar um processo filho zumbi, a função wait realiza esta tarefa. Se um processo pai não limpar um processo filho ele ficam no sistema como processos zumbi.
 
+3.4.4 Cleaning Up Children Asynchronously
 
+Se você está usando um processo filho para dar exec em outro programa, é normal chamar wait imediatamente no processo pai, que vai parar até que o processo filho complete. Para permiter que um processo pai continue rodando e garantir que o processo filho seja limpado devemos utilizar as funções wait3 ou wait4 periodicamente, para limpar os filhos zumbi.
+Devemos adicionar uma flag adicional para adicionar o valor WNOHANG, que fará com que a função rode em nonblocking mode, que vai limpar e terminar. O valor de retorno será o ID do processo do filho terminado. Também conseguimos notificar o pai quando um proceso filho terminou, para isso o Linux envia o sinal SIGCHLD para o pai.
+Para limpar o processo criança podemos lidar com o SIGCHLD e armazenar o status de terminação se esta informação for necessária.
  
 
