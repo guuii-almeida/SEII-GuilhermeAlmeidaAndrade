@@ -22,4 +22,11 @@ Você pode matar um processo utilizando o comando kill, basta especificar na lin
 3.2 Creating Processes
 
 Duas técnicas são utilizadas para criar um novo processo. A primeira é ineficiente e tem riscos de segurança e a segunda é mais complexa, porém garante mais flexibilidade, velocidade e segurança.
-Ao utilizar a função system na biblioteca padrão C, podemos executar um comando de dentro de um programa, como se este comando tivesse escrito em uma shell, o sistema cria até mesmo um sub processo.
+Ao utilizar a função system na biblioteca padrão C, podemos executar um comando de dentro de um programa, como se este comando tivesse escrito em uma shell, o sistema cria até mesmo um sub processo. A função system retorna o status de saída do comando shell. Se o shell não pode rodar, system retornará 127 ou -1 para qualquer outro erro.
+Já que a função system utiliza um shell para executar comandos, ele está sujeito às falhas do shell e suas diferenças para cada sistema e versões. Deste modo, é preferível utilizar os comandos fork e exec para criar processos.
+
+3.2.2 Usinf fork and exec
+
+O DOS e Windows API contém a família spawn de funções, estas funções criam um novo processo através do nome de um programa. O Linux não possui uma função única para fazer isto tudo em um passo só, ele fornece uma função fork que cria um processo filho que é uma cópia perfeita do processo seu pai e depois fornece um conjunto de funções
+da família exec que torna um processo a instância de um outro programa. Para gerar um novo processo, devemos copiar o processo atual utilizando fork e depois utilizar o exec para transformar um destes processos na instância do programa desejado. O processo filho criado pela função fork recebe um novo ID para diferenciar-se, o valor de retorno do processo filho
+é sempre zero, para facilitar o entendimento que está sendo utilizado como processo filho.
