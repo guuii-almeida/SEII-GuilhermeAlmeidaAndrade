@@ -1,6 +1,6 @@
 1) Qual o limite de bytes a serem enviados por pacotes TCP e UDP
 
-O limite de bytes a serem enviados por pacotes TCP é de 64kbytes, mas o comum a ser utilizado é de até 1500bytes. Para o protocolo UDP o limite é 5507bytes.
+O limite de bytes a serem enviados por pacotes TCP é de 64kbytes, mas o comum a ser utilizado é de até 1500bytes. Para o protocolo UDP o limite é 65.507bytes.
 
 2) Como um arquivo grande pode ser transmitido via internet
 
