@@ -1,0 +1,182 @@
+FloatLAyout:
+	id: tela
+	BoxLayout:
+		canvas:
+			Color:
+				rgba: 0,92,0,92,0,92,1
+			Rectangle:
+				size: self.size
+				pos.self.pos
+		orientation: 'vertical'
+		BoxLayout:
+		AppBar:
+		Menu:
+		ScrollView:
+			BoxLayout:
+				size_hint_y:None
+				height: self.minimum_height
+				orientation: 'vertical'
+				Chat:
+				Chat:
+				Chat:
+				Chat:
+                       		Chat:
+                        	Chat:
+                        	Chat:
+                        	Chat:
+				Widget:
+	Lista:
+
+<AppBar@BoxLayout>:
+	padding:'6dp'
+	canvas:
+                        Color:
+                                rgba:0,1,0,1
+                        Rectangle:
+                                size: self.size
+                                pos: self.pos
+                size_hint_y: None
+                height: '50dp'
+                Label:
+                        text: 'HashWHats'
+                        bold:True
+                        font_size: '22dp'
+                        haling:'left'
+                        text_size:self.size
+                        valing: 'center'
+                        padding_x: '10dp'
+		Icon:
+			background_normal:'lupa.png'
+			active:True
+		Icon: 
+			background_normal:'pontos.png'
+			active:True
+			on_release: app.root.ids.tela.add_widget(Lista())
+	
+<Space@Widget>:
+	canvas:
+		Color:
+			rgba:0,0.3,0.13,1
+		Rectangle:
+			size: self.size
+			pos:self.pos
+	size_hint_y:None
+	height: '16dp'
+
+<Menu@BoxLayout>:
+	canvas:
+                        Color:
+                                rgba:0,1,0,1
+                        Rectangle:
+                                size: self.size
+                                pos: self.pos
+	padding: '2dp'
+	spacing: '10dp'
+	size_hint_y:None
+	height:'35dp'
+	Icon:
+		background_normal: 'camera.png'
+	MenuButton:
+		text: 'CHATS'
+		active: True
+	MenuButton:
+                text: 'STATUS'
+	MenuButton:
+                text: 'CALLS'
+
+<Foto@Widget>:
+	canvas:
+		Color:
+			rgba: 1,1,1,1
+		Ellipse: 
+			size:self.size
+			pos: self.pos
+			source: 'logo.png'
+	size_hint_x:None
+	width: self.height
+
+<ListaItem@Label>:
+	color: 0,0,0,0.7
+	size_hint_y:None
+	height: '50dp'
+	x: 
+	
+<Lista@AnchorLayout>:
+	anchor_x:'right'
+	anchor_y:'top'
+	padding: '50dp'
+
+	BoxLayout:
+		canvas:
+        	        Color:
+                	        rgba: 0.92,0.92,0.92,1
+               		 Rectangle:
+                       		 size:self.size
+                      		 pos:self.pos
+       		size_hinte:None,None
+       		height: self.minimum_height
+        	width: '200dp'  
+       		orientation:'vertical'  
+     	   	ListaItem:
+                	text: 'Opcao 1' 
+        	ListaItem:
+                	text: 'Opcao 2' 
+        	ListaItem:
+                	text: 'Opcao 3' 
+
+<Chat@BoxLayout>:
+	canvas:
+		Color:
+			rgba: 0,0,0,0.2
+		Line:
+			width:1
+			points: self.x+self.height,self.y,sel.x+self.width-20,self.y
+	BoxLayout
+		orientation: 'vertical'
+		padding: '13dp'
+		Label:
+			text: 'Nome do grupo ou chat'
+			color: 0,0,0,1
+			text_size: self.size
+			haling: 'left'
+			valing: 'center'
+			bold: True
+		Label:
+			text: 'Will: a ultima mensagem do chat'
+			text_size: self.size
+			color: 0,0,0,1
+			haling: 'left'
+			valing: 'center'
+	BoxLayout:
+		size_hint_x: None
+                width: '100dp'
+		padding:'7dp'
+		Label:
+                        text:'21:01PM'
+                        color: 0,0,0,0.5
+                        size_hint_x: None
+                        width: '100dp'
+                        texte_size: self.size
+                        valign: 'top'
+                        halign: 'right'
+		
+
+<MenuButton@Button>
+	active:False
+
+        canvas:
+		Color:
+			rgba:1,1,1,1
+		Line:
+			width: 4  if root.active else 0.1
+			points: self.x,self.y self.x+self.width,self.y
+	Background_color:0,0,0,0
+	bold:True
+	color: (1,1,1,1) if root.activate else (1,1,1,0.5)
+
+<Icon@Button>
+	active:False
+	size_hint_x:None
+	width:self.heigh
+	border: 0,0,0,0
+	backgroundcolor: (1,1,1,1) if root.activate else (1,1,1,0.5)
